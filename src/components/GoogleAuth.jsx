@@ -50,7 +50,10 @@ const GoogleAuth = (props) => {
   <div className=" bg-white p-1 w-[40px] h-[30px] mx-1 flex justify-center items-center">
     <img className="size-5" src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"/>
   </div>
-  <p className="text-black font-400  capitalize">{loading? "loading":`Sign ${props.text} with google`}</p>
+  <p className="text-black font-400  capitalize">{loading? <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                                <circle className="opacity-[0]" cx="12" cy="12" r="10" stroke-width="4"></circle>
+                                <path className="opacity-100" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.416A7.96 7.96 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.055-2.09-7.097-5.002z"></path>
+                            </svg>:`Sign ${props.text} with google`}</p>
 </div>
   )
 }

@@ -88,7 +88,10 @@ const SignIn = () => {
             className='w-[250px] text-[14px]  h-9 p-2 outline-2 border outline-none border-gray-500 focus:border-gray-900 focus:border-2 rounded-lg moblg:w-[320px] tabl:w-[320px] lg:w-[400px] moblg:text-[18px]'
             placeholder='Enter Your Password'
             required />
-          <button  disabled={loading} type="submit" className='bg-[#1b5051] text-white p-2 rounded-md capitalize' >{loading? "loading":"Sign In"}</button>
+          <button  disabled={loading} type="submit" className='bg-[#1b5051] text-white p-2 rounded-md capitalize flex justify-center' >{loading? <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                                <circle className="opacity-[0]" cx="12" cy="12" r="10" stroke-width="4"></circle>
+                                <path className="opacity-100" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.416A7.96 7.96 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.055-2.09-7.097-5.002z"></path>
+                            </svg>:"Sign In"}</button>
           <p className='text-center m-[-20px]'>OR</p>
           <GoogleAuth text="in" />
         </form>

@@ -50,7 +50,7 @@ const App = () => {
         <Route path='/cancel' element={<Cancel/>} />
        
       </Routes>
-      <ToastContainer className="mt-[65px]  z-40" transition={Zoom} />
+      <ToastContainer position='top-center' theme='dark' className="z-40 top-4 " transition={Zoom} />
     </Router>
   </>
   )
