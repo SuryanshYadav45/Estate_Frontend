@@ -37,6 +37,11 @@ const SignUp = () => {
     })
     const data=await res.json();
     dispatch(signinEnd(null));
+    if(res.status===409){
+       toast.warn('User Already Exists!', {
+        position: toast.POSITION.TOP_CENTER
+      });;
+      navigate('/signin')
     if(res.status===201){
        toast.success('User Created Successfully', {
         position: toast.POSITION.TOP_CENTER
