@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable, } from "firebase/storage"
 import { app } from "../firebase.js";
 import { useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProperty = () => {
     const navigate = useNavigate();
     const [uploading, setuploading] = useState(false)
     const { currentuser, loading } = useSelector((state) => state.user)
-    console.log(currentuser)
     const decoded = currentuser ? jwtDecode(currentuser.token) : null
+    const [update, setupdate] = useState(true)
     const { id } = decoded || {};
-    console.log(id)
     const [files, setfiles] = useState([])
     const [formdata, setformdata] = useState({
         propname: "",
@@ -89,6 +90,7 @@ const CreateProperty = () => {
             }
             Promise.all(promises)
                 .then((urls) => {
+                    setupdate(false);
                     setuploading(false);
                     setformdata({
                         ...formdata,
@@ -104,6 +106,13 @@ const CreateProperty = () => {
     };
 
     const createlisting = async () => {
+        if(update)
+        {
+            toast.warn("Atleast Upload One Image!",{
+                position:toast.POSITION.TOP_CENTER
+              })
+              return;
+        }
 
         const response = await fetch('https://backendestate.onrender.com/listing/createlisting', {
             method: "POST",
@@ -114,6 +123,9 @@ const CreateProperty = () => {
             body: JSON.stringify(formdata)
         })
         if (response.status == 201) {
+            toast.success("Property Created Successfully!",{
+                position:toast.POSITION.TOP_CENTER
+              })
             navigate('/profile');
 
         }
@@ -159,11 +171,11 @@ const CreateProperty = () => {
                         </ul>
                     </div>
                     <div className='flex justify-between'>
-                        <div> <input onChange={handlechange} required id='beds' className='w-[80%] shadow-lg my-2 mx-1 rounded-md  h-[45px]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2' type="number" /><span className='text-gray-700'>Beds</span></div>
-                        <div><input onChange={handlechange} required id='bathrooms' className="w-[80%] shadow-lg my-2 mx-1 rounded-md  h-[45px]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2" type="number" /><span className='text-gray-700'>Baths</span></div>
+                        <div> <input onChange={handlechange} required id='beds' className=' w-[100px] shadow-lg my-2 mx-1 rounded-md  h-[45px] mobxl:w-[80%]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2' type="number" /><span className='text-gray-700'>Beds</span></div>
+                        <div><input onChange={handlechange} required id='bathrooms' className=" w-[100px] shadow-lg my-2 mx-1 rounded-md  h-[45px] mobxl:w-[80%]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2" type="number" /><span className='text-gray-700'>Baths</span></div>
                     </div>
                     <div>
-                        <input onChange={handlechange} id='price' required className=' shadow-lg my-4 rounded-md  h-[45px] mx-1 border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2' type="number" name="" /> <span>Regular Price (₹/Month)</span>
+                        <input onChange={handlechange} id='price' required className=' shadow-lg my-4 rounded-md w-[160px] mobxl:w-[200px]  h-[45px] mx-1 border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2' type="number" name="" /> <span>Regular Price (₹/Month)</span>
                     </div>
 
                 </div>
@@ -177,7 +189,7 @@ const CreateProperty = () => {
                                 <path className="opacity-100" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.416A7.96 7.96 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.055-2.09-7.097-5.002z"></path>
                             </svg> : "Upload"}</button>
                     </div>
-                    <button onClick={createlisting} className='w-full h-[45px] rounded-md bg-[#6EB5AA] text-white font-semibold my-2 p-2'>Create Property</button>
+                    <button onClick={createlisting} className='w-full h-[45px] rounded-md bg-[#6EB5AA] text-white font-semibold my-2 p-2' >Create Property</button>
                 </div>
             </div>
         </div>
