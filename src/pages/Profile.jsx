@@ -188,7 +188,8 @@ console.log(expirationDate);
               <circle className="opacity-[0]" cx="12" cy="12" r="10" stroke-width="4"></circle>
             <path className="opacity-100" fill="currentColor"  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.416A7.96 7.96 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.055-2.09-7.097-5.002z"></path>
             </svg>:null}Update</button>
-          <Link to="/create-property" className='bg-[#369434] text-center w-full moblg:w-[380px] tabl:w-[500px] lg:w-[500px] text-white p-2 my-4 rounded-md uppercase' >Create Property</Link>
+          <Link to="/create-property" className='bg-[#369434] text-center w-full moblg:w-[380px] tabl:w-[500px] lg:w-[500px] text-white p-2 my-4 rounded-md uppercase' >Create Real Estate Property</Link>
+          <Link to="/create-product" className='bg-[#369434] text-center w-full moblg:w-[380px] tabl:w-[500px] lg:w-[500px] text-white p-2  rounded-md uppercase' >Create Product</Link>
         </form>
         <div className='flex justify-between items-center  moblg:w-[380px] tabl:w-[500px] lg:w-[500px] m-auto'>
           <button onClick={handledelete} className='text-red-700 capitalize'>delete account</button>

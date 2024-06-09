@@ -5,6 +5,12 @@ const Home = () => {
   const [data, setdata] = useState([])
   const [rent, setrent] = useState([])
   const [buy, setbuy] = useState([])
+  const [Electronics, setElectronics] = useState([])
+  const [Fashion, setFashion] = useState([])
+  const [Beauty, setBeauty] = useState([])
+  const [Health, setHealth] = useState([])
+  const [Books, setBooks] = useState([])
+  const [Toy, setToy] = useState([])
   useEffect(() => {
     const fetchdata = async () => {
       const respone = await fetch('https://backendestate.onrender.com/listing/getlisting')
@@ -16,11 +22,29 @@ const Home = () => {
       setbuy(buyListings);
       setdata(data);
     }
+
+    const product=async()=>{
+      const response= await fetch('https://backendestate.onrender.com/listing/getproductlisting')
+      const data =await response.json();
+      const Electronics=data.filter((item)=>item.category==="Electronics")
+      const Fashion=data.filter((item)=>item.category==="Fashion")
+      const Beauty=data.filter((item)=>item.category==="Beauty & Personal Care")
+      const Health=data.filter((item)=>item.category==="Health & Wellness")
+      const Books=data.filter((item)=>item.category==="Books")
+      const Toy=data.filter((item)=>item.category==="Toys & Games")
+      console.log(Electronics )
+      setElectronics(Electronics)
+      setBeauty(Beauty)
+      setBooks(Books)
+      setFashion(Fashion)
+      setHealth(Health)
+      setToy(Toy)
+    }
+    product();
     fetchdata();
   }, [])
 
-  console.log(rent);
-  console.log(buy);
+  
   return (
     <div className="relative bg-[rgba(72,71,71,0.1)]">
       <div
@@ -38,17 +62,43 @@ const Home = () => {
         </div>
       </div>
       <div className="max-w-[1150px] mx-auto">
+          <div className='py-7'>
+            <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Electronics</h4>
+            <CarouselComponent data={Electronics} property={false} />
+          </div>
+           <div className='py-7'>
+            <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Fashion</h4>
+            <CarouselComponent data={Fashion} property={false} />
+          </div>
+         
+          <div className='py-7'>
+            <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Beauty & Personal Care</h4>
+            <CarouselComponent data={Beauty} property={false} />
+          </div>
+           
+          <div className='py-7'>
+            <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Health & Wellness</h4>
+            <CarouselComponent data={Health}  property={false} />
+          </div>
+          
+          <div className='py-7'>
+            <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Books</h4>
+            <CarouselComponent data={Books}  property={false} />
+          </div>
+          
+
         <div className='py-7'>
-          <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Rent Property</h4>
-          <CarouselComponent data={rent} />
+          <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Rent Real Estate Property</h4>
+          <CarouselComponent data={rent}  property={true} />
         </div>
 
         <div className='py-10'>
-          <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Buy Property</h4>
-          <CarouselComponent data={buy} />
-        </div>
+          <h4 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Buy Real Estate Property</h4>
+          <CarouselComponent data={buy}  property={true} />
+        </div> 
 
       </div>
+      
 
     </div>
   )

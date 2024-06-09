@@ -138,7 +138,7 @@ const CreateProperty = () => {
             <div className='max-w-[1150px] m-auto flex flex-col tabl:flex-row'>
 
                 <div className='w-[100%] tabl:w-[50%] p-4 flex flex-col'>
-                    <input required type="text" onChange={handlechange} id='propname' className='shadow-lg my-2 rounded-md  h-[40px]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2 w-full' placeholder='Name of the Property' />
+                    <input required type="text" onChange={handlechange} id='propname' className='shadow-lg my-2 rounded-md  h-[40px]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2 w-full' placeholder='Name of the Product' />
                     <textarea required id="desc" onChange={handlechange} name="description" className='shadow-lg w-full   my-2 rounded-md p-2 border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] ' rows="7" placeholder='Description'></textarea>
                     <input required id='address' onChange={handlechange} type="text" className='shadow-lg my-2 rounded-md  h-[40px]  border focus:outline-none focus:ring-[#6EB5AA] focus:border-[#6EB5AA] p-2 w-full' name="address" placeholder='Address' />
                     <div className='flex items-center justify-between'>

@@ -28,13 +28,18 @@ const SignUp = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     dispatch(signinStart());
-    const res= await fetch("https://backendestate.onrender.com/auth/signup",{
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Request timed out')), 10000)
+    );
+  
+    const apiCall= await fetch("https://backendestate.onrender.com/auth/signup",{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
       },
       body:JSON.stringify(formData),
     })
+    const res = await Promise.race([apiCall, timeout]);
     const data=await res.json();
     dispatch(signinEnd(null));
     if(res.status===409)

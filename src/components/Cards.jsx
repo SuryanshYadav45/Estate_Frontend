@@ -4,7 +4,7 @@ import { IoBed } from "react-icons/io5";
 import { BiSolidBath } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
 
-const Cards = ({ data }) => {
+const Cards = ({ data, property }) => {
 const navigate=useNavigate();
   const checkout= async()=>
   {
@@ -37,9 +37,11 @@ const navigate=useNavigate();
     }
   }
  
+  console.log("property",property)
 
   return (
-    <div onClick={()=>navigate(`/property/${data._id}`)} className="w-[250px] m-2 h-[350px] bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden cursor-pointer">
+    property?
+    (<div onClick={()=>navigate(`/property/${data._id}`)} className="w-[250px] m-2 h-[350px] bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden cursor-pointer">
 
       <img className="rounded-t-lg h-[45%] bg-cover w-full hover:scale-[1.1] transition-all duration-500" src={data.imageurls[0]} alt="" />
 
@@ -58,7 +60,19 @@ const navigate=useNavigate();
             : <button onClick={checkout} className='w-[80px] h-[35px] rounded-md bg-[#398b7f] text-white' >Buy</button>} */}
         </div>
       </div>
+    </div>)
+    : (<div onClick={()=>navigate(`/product/${data._id}`)} className="w-[250px] m-2 h-[350px] bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden cursor-pointer">
+
+    <img className="rounded-t-lg h-[50%] bg-cover w-full hover:scale-[1.1] transition-all duration-500" src={data.imageurls[0]} alt="" />
+
+    <div className="p-2 my-1">
+      <h6 className='text-[#2b5f57]  font-semibold text-[16px] capitalize'>{data.prodname}</h6>
+      <h6 className='text-gray-700 text-[13px] my-1  line-clamp-3 text-justify'>{data.category}</h6>
+      <p className="text-gray-700 text-[13px] my-1  line-clamp-3 text-justify" >{data.description}</p>
+      <p className='font-bold text-[14px] text-[#1e5e1e] mt-2'>₹{data?.price?.toLocaleString("en-IN")}{data.type=="rent"?"/Month":""}</p>
+      
     </div>
+  </div>)
 
 
   )

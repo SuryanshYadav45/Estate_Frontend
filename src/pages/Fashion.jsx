@@ -11,9 +11,10 @@ const Search = () => {
   {
     const fetchdata=async()=>
     {
-        const response= await fetch(`http://localhost:4000/listing/search?q=${query}`)
+        const response= await fetch(`https://backendestate.onrender.com/listing//categoryproduct/Fashion`)
         const data= await response.json();
         setproperty(data);
+        console.log(data)
     }
   fetchdata();
 
@@ -21,9 +22,8 @@ const Search = () => {
 
   return (
     <div className='w-full  min-h-[calc(100vh-72px)] bg-[rgba(72,71,71,0.1)]  p-2'>
-
-      <div className='max-w-[1150px] mx-auto'>
-        <h1 className='text-center p-3 font-semibold text-[30px] capitalize'>Search Results for: <span>{query}</span> </h1>
+        <div className='max-w-[1150px] mx-auto'>
+        <h1 className='font-bold ml-4 mobxl:text-[28px] text-[#1b5051] uppercase underline'>Fashion</h1>
 
         <div className='w-full h-full flex'>
         {
@@ -33,7 +33,7 @@ const Search = () => {
             )})
         }
         </div>
-    </div>
+        </div>
     </div>
   )
 }

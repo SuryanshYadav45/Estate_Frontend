@@ -53,6 +53,10 @@ const SignIn = () => {
 
     try {
       dispatch(signinStart());
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Request timed out')), 10000)
+      );
+    
       const response = await fetch("https://backendestate.onrender.com/auth/signin", {
         method: "POST",
         headers: {
@@ -60,7 +64,7 @@ const SignIn = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+      const res = await Promise.race([response, timeout]);
       const data = await response.json();
       dispatch(signinEnd(data));
   

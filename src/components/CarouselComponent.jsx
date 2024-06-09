@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Cards from './Cards';
 
-const CarouselComponent = ({data}) => {
+const CarouselComponent = ({data, property}) => {
   console.log(data);
   return (
     
@@ -69,7 +69,7 @@ const CarouselComponent = ({data}) => {
             swipeable
           >
             {data.map((data,index) => (
-              <div key={index} className='flex justify-center'><Cards  data={data} /></div>
+              <div key={index} className='flex justify-center'><Cards  data={data} property={property} /></div>
             ))}
 
           </Carousel>
