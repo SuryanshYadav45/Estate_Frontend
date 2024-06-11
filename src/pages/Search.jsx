@@ -11,7 +11,7 @@ const Search = () => {
   {
     const fetchdata=async()=>
     {
-        const response= await fetch(`http://localhost:4000/listing/search?q=${query}`)
+        const response= await fetch(`https://backendestate.onrender.com/listing/search?q=${query}`)
         const data= await response.json();
         setproperty(data);
     }
